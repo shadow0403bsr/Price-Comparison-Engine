@@ -82,12 +82,26 @@ print(url_fpkt)
 source_code_fpkt = urlopen(Request(url_fpkt, headers=headers))
 soup_fpkt = BeautifulSoup(source_code_fpkt, "html.parser")
 
-for titles in soup_fpkt.find_all('a', {'class': '_2cLu-l'}):
-    try:
-        product_title_flipkart.append(titles.get('title'))
-        product_url_flipkart.append('https://www.flipkart.com' + titles.get('href'))
-    except AttributeError:
-        continue
+if(soup_fpkt.find_all('a', {'class': '_2cLu-l'}) == []):
+    for titles in soup_fpkt.find_all('div', {'class': '_3wU53n'}):
+        try:
+            product_title_flipkart.append(titles.get_text())
+        except AttributeError:
+            continue
+    for titles in soup_fpkt.find_all('a', {'class': '_31qSD5'}):
+        try:
+            product_url_flipkart.append('https://www.flipkart.com' + titles.get('href'))
+        except AttributeError:
+            continue
+else:
+    for titles in soup_fpkt.find_all('a', {'class': '_2cLu-l'}):
+        try:
+            product_title_flipkart.append(titles.get('title'))
+            product_url_flipkart.append('https://www.flipkart.com' + titles.get('href'))
+        except AttributeError:
+            continue
+
+
 cnt = 0
 for titles in soup_fpkt.find_all('div', {'class': '_1uv9Cb'}):
     temp = ""
@@ -104,11 +118,7 @@ for titles in soup_fpkt.find_all('div', {'class': '_1uv9Cb'}):
     cnt = cnt + 1
     if(cnt == len(product_title_flipkart)):
         break
-
+#<script id="is_script" nonce="11508562286050613601"> has images for products
 print(len(product_title_flipkart),len(product_url_flipkart),len(product_curprice_flipkart),len(product_orgprice_flipkart))
-print(product_title_flipkart)
-print(product_url_flipkart)
-print(product_orgprice_flipkart)
-print(product_curprice_flipkart)
-#for lc in range(0, len(product_title_flipkart)):
-#    print(product_title_flipkart[lc] + "\n" + product_url_flipkart[lc] + "\n" + product_curprice_flipkart[lc] + "\n" + product_orgprice_flipkart[lc] + "\n")
+for lc in range(0, len(product_title_flipkart)):
+    print(product_title_flipkart[lc] + "\n" + product_url_flipkart[lc] + "\n" + product_curprice_flipkart[lc] + "\n" + product_orgprice_flipkart[lc] + "\n")
