@@ -14,6 +14,8 @@ offerPrice = soup.find('span',attrs={'class' : 'a-size-medium a-color-price inli
 print(offerPrice)
 title = soup.find(id="productTitle").get_text().strip()
 print(title)
+image = soup.find('img',attrs={'class' : 'a-dynamic-image image-stretch-horizontal frontImage'})
+print(image['src'])
 author = soup.find('span',attrs={'class' : 'author notFaded'})
 try:
     print(author.find('span', attrs={'class': 'a-size-medium'}).get_text().split('\n')[0])
