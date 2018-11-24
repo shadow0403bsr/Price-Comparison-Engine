@@ -1,2 +1,3 @@
 # Price-Comparison-Engine
-A price comparison engine for e-commerce sites like AmazonIN and Flipkart
+A price comparison engine for books on e-commerce sites like AmazonIN, Flipkart, Infibeam and Snapdeal.
+
