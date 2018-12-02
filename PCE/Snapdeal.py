@@ -14,7 +14,7 @@ def get_price(soup):
         data = soup.find("span", attrs={"class": "lfloat product-price"})
         return data.get_text().strip()[5:]
     except:
-        return 0
+        return 0.0
 
 def get_snapdeal(isbn):
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}

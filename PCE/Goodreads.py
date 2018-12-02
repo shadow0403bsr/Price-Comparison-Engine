@@ -8,14 +8,14 @@ def get_isbn(soup):
         isbn = soup.find(id="bookDataBox").get_text().strip().split("\n")
         return (isbn[6].strip())
     except:
-        return "NULL"
+        return "NA"
 
 def get_title(soup):
     try:
         title = soup.find(id="bookDataBox").get_text().strip().split("\n")
         return (title[1].strip())
     except:
-        return "NULL"
+        return "NA"
 
 def get_author(soup):
     value = []
@@ -36,7 +36,7 @@ def get_author(soup):
     return authorID
 
 def get_rating(soup):
-    rating = soup.find("span", attrs={"class" : "value rating"}).get_text().strip()
+    rating = soup.find("span", attrs={"itemprop" : "ratingValue"}).get_text().strip()
     return rating
 
 def get_image(soup):
@@ -45,6 +45,8 @@ def get_image(soup):
 
 def get_genre(soup, pos):
     genres = soup.find_all("a", attrs={"class" : "actionLinkLite bookPageGenreLink"})
+    if(genres.__len__()<pos):
+        return "NA"
     return genres[pos-1].get_text().strip()
 
 def get_goodreads(isbn):

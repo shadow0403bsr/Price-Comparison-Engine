@@ -16,7 +16,7 @@ def get_price(soup):
             data = soup.find("span", attrs={"class": "a-size-base a-color-price a-text-bold"})
         return data.get_text().strip()
     except:
-        return 0
+        return 0.0
 
 def get_amazon(isbn):
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
