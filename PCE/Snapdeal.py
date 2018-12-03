@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import re
+import time
 
 def get_url(soup):
     try:
@@ -22,5 +23,6 @@ def get_snapdeal(isbn):
     source_code = urlopen(Request(url, headers=headers))
     soup = BeautifulSoup(source_code, 'html.parser')
     snapdeal_data = dict(snapdeal_url = get_url(soup), snapdeal_price = get_price(soup))
+    time.sleep(2)
     return snapdeal_data
 

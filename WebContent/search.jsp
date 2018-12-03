@@ -128,6 +128,46 @@
 		<%
 			String data_type = (String)request.getParameter("column").trim();
 			String qry = request.getParameter("query").trim();
+			String[] query;
+			StringBuilder sqlquery = new StringBuilder("");
+			query = qry.split(" ");
+			int len = query.length;
+			if(len>1)
+			{
+				if(data_type.equals("title"))
+				{
+					for(int lc=0;lc<len;lc++)
+					{
+						sqlquery.append("title like \'%");
+						sqlquery.append(query[lc]);
+						if(lc == len-1)
+						{
+							sqlquery.append("%\'");
+						}
+						else
+						{
+							sqlquery.append("%\' OR ");
+						}
+					}
+				}
+				else if(data_type.equals("author"))
+				{
+					for(int lc=0;lc<len;lc++)
+					{
+						sqlquery.append("authorName like \"%");
+						sqlquery.append(query[lc]);
+						if(lc == len-1)
+						{
+							sqlquery.append("%\"");
+						}
+						else
+						{
+							sqlquery.append("%\" OR ");
+						}
+					}
+				}
+				
+			}
 			try{
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				String url = "jdbc:mysql://localhost:3306/project";
@@ -139,7 +179,7 @@
 				int count = 0;
 				if(data_type.equals("title"))
 				{
-					String sqlqry = "Select * from book, author where title like \'%" + qry + "%\' AND author_id = authorID";
+					String sqlqry = "Select * from book, author where (" + sqlquery + ") AND author_id = authorID";
 					rs = st.executeQuery(sqlqry);	
 				}
 				else if(data_type.equals("identifier"))
@@ -149,7 +189,7 @@
 				}
 				else if(data_type.equals("author"))
 				{
-					String sqlqry = "Select * from book, author where author_id=(Select authorID from author where authorName like \'%"+ qry +"%\') AND author_id = authorID order by rating desc";
+					String sqlqry = "Select * from book, author where author_id=(Select authorID from author where ("+ sqlquery +")) AND author_id = authorID order by rating desc";
 					rs = st.executeQuery(sqlqry);	
 				}
 				

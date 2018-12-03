@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import re
+import time
 
 def get_url(soup):
     try:
@@ -23,6 +24,7 @@ def get_infibeam(isbn):
     source_code = urlopen(Request(url, headers= headers))
     soup = BeautifulSoup(source_code, 'html.parser')
     infibeam_data = dict(infibeam_url = get_url(soup), infibeam_price = get_price(soup))
+    time.sleep(2)
     return infibeam_data
 
 

@@ -1,0 +1,6 @@
+beautifulsoup==4.6.3	
+bs4==0.0.1
+mysql-connector-python==8.0.13
+urllib.request
+re
+time

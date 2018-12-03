@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import re
+import time
 
 def get_url(soup):
     try:
@@ -22,6 +23,7 @@ def get_flipkart(isbn):
     source_code = urlopen(Request(url, headers=headers))
     soup = BeautifulSoup(source_code, 'html.parser')
     flipkart_data = dict(flipkart_url = get_url(soup), flipkart_price = get_price(soup))
+    time.sleep(2)
     return flipkart_data
 
 

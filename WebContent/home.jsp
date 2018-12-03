@@ -2,6 +2,27 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+function validate(form)
+{
+	if(document.getElementById("isbn-radio-btn").checked){
+		var qry = document.form.getElementById("searchform");
+		if(qry.value.length==10 || qry.value.length==13){
+			if(qry.value.match(/^[0-9]+$/))
+				return true;
+			else{
+				document.form.query.focus();
+      			return false;
+			}
+		}
+		else{
+			alert("make sure length is 10 or 13");
+			document.form.query.focus();
+			return false;
+		}
+	}
+}
+</script>
 <style>
 img.center 
 {

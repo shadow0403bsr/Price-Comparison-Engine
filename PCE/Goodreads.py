@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import mysql.connector
 import re
+import time
 
 def get_isbn(soup):
     try:
@@ -59,5 +60,6 @@ def get_goodreads(isbn):
         invalid = []
         return invalid
     goodreads_data = dict(isbn = get_isbn(soup), isbn13 = isbn, title = get_title(soup), authorID = get_author(soup), image = get_image(soup), rating = get_rating(soup), genre1 = get_genre(soup,1), genre2 = get_genre(soup,2), genre3 = get_genre(soup,3))
+    time.sleep(2)
     return goodreads_data
 
