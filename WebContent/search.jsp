@@ -3,6 +3,42 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+function validate()
+{
+	if(document.getElementById("isbn-radio-btn").checked)
+	{
+		var qry = document.getElementById("searchform");
+		if(qry.value.length==10)
+		{
+			if(qry.value.match(/^[0-9X]+$/))
+				return true;
+			else
+			{
+				alert("ISBN10 contains only numbers or X");
+				return false;
+			}
+		}
+		else if(qry.value.length==13)
+		{
+			if(qry.value.match(/^[0-9]+$/))
+				return true;
+			else
+			{
+				alert("ISBN13 only consists numbers");
+				return false;
+			}
+			
+		}
+		else
+		{
+			alert("ISBN is 10 or 13 characters long");
+			return false;
+		}
+	}
+	return true;
+}
+</script>
 <head>
 	<title><%=request.getParameter("query") + " - Search Results" %></title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -110,12 +146,12 @@
 			</td>
 			<td width="80%" align="left">
 				<div class="form">
-					<form name="libgen" action="search.jsp" method="GET">
-						<input name="query" id="searchform" size="60" maxlength="200" value="">
-						<input type="submit" onclick="this.disabled=" disabled';="" document.forms.item(0).submit();'="" value="Search"><br>
-						<input type="radio" name="column" value="title" checked>Title
-						<input type="radio" name="column" value="author">Author
-						<input type="radio" name="column" value="identifier">ISBN
+					<form name="libgen" action="search.jsp" onsubmit="return validate()">
+						<input name="query" id="searchform" size="60" maxlength="200" value=""/>
+						<input type="submit" value="Search"/><br>
+						<input type="radio" name="column" value="title" checked/>Title
+						<input type="radio" name="column" value="author"/>Author
+						<input type="radio" name="column" id="isbn-radio-btn" value="identifier"/>ISBN
 					</form>
 				</div>
 			</td>
@@ -138,15 +174,15 @@
 				{
 					for(int lc=0;lc<len;lc++)
 					{
-						sqlquery.append("title like \'%");
+						sqlquery.append("title like \"%");
 						sqlquery.append(query[lc]);
 						if(lc == len-1)
 						{
-							sqlquery.append("%\'");
+							sqlquery.append("%\"");
 						}
 						else
 						{
-							sqlquery.append("%\' OR ");
+							sqlquery.append("%\" OR ");
 						}
 					}
 				}
@@ -165,8 +201,22 @@
 							sqlquery.append("%\" OR ");
 						}
 					}
+				}				
+			}
+			else
+			{
+				if(data_type.equals("title"))
+				{
+					sqlquery.append("title Like \"%");
+					sqlquery.append(query[0]);
+					sqlquery.append("%\"");					
 				}
-				
+				else if(data_type.equals("author"))
+				{
+					sqlquery.append("authorName Like \"%");
+					sqlquery.append(query[0]);
+					sqlquery.append("%\"");	
+				}
 			}
 			try{
 				Class.forName("com.mysql.cj.jdbc.Driver");

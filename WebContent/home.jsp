@@ -3,24 +3,39 @@
 <!DOCTYPE html>
 <html>
 <script type="text/javascript">
-function validate(form)
+function validate()
 {
-	if(document.getElementById("isbn-radio-btn").checked){
-		var qry = document.form.getElementById("searchform");
-		if(qry.value.length==10 || qry.value.length==13){
-			if(qry.value.match(/^[0-9]+$/))
+	if(document.getElementById("isbn-radio-btn").checked)
+	{
+		var qry = document.getElementById("searchform");
+		if(qry.value.length==10)
+		{
+			if(qry.value.match(/^[0-9X]+$/))
 				return true;
-			else{
-				document.form.query.focus();
-      			return false;
+			else
+			{
+				alert("ISBN10 contains only numbers or X");
+				return false;
 			}
 		}
-		else{
-			alert("make sure length is 10 or 13");
-			document.form.query.focus();
+		else if(qry.value.length==13)
+		{
+			if(qry.value.match(/^[0-9]+$/))
+				return true;
+			else
+			{
+				alert("ISBN13 only consists numbers");
+				return false;
+			}
+			
+		}
+		else
+		{
+			alert("ISBN is 10 or 13 characters long");
 			return false;
 		}
 	}
+	return true;
 }
 </script>
 <style>
@@ -123,12 +138,12 @@ form
 <a href='home.jsp'><img src="images/logo.jpg" alt="Price Comparison Logo" height="158" width="280" class="center">
 </a>
 <div class="form">
-<form name="libgen" action="search.jsp">
-	<input name="query" id="searchform" size="60" maxlength="200" value="">
-<input type="submit" onclick="this.disabled=" disabled';="" document.forms.item(0).submit();'="" value="Search"><br>
-<input type="radio" name="column" value="title" checked>Title
-<input type="radio" name="column" value="author">Author
-<input type="radio" name="column" value="identifier">ISBN
+<form name="libgen" action="search.jsp" onsubmit="return validate()">
+	<input name="query" id="searchform" size="60" maxlength="200" value=""/>
+<input type="submit" value="Search"/><br>
+<input type="radio" name="column" value="title" checked/>Title
+<input type="radio" name="column" value="author"/>Author
+<input type="radio" name="column" id="isbn-radio-btn" value="identifier"/>ISBN
 </form>
 </div>
 <br><br><br><br>
