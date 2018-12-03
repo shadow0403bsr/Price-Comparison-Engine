@@ -99,7 +99,8 @@ form
 <title>Price Comparison Engine</title>
 </head>
 <body>
-<img src="images/logo.jpg" alt="Price Comparison Logo" height="158" width="280" class="center">
+<a href='home.jsp'><img src="images/logo.jpg" alt="Price Comparison Logo" height="158" width="280" class="center">
+</a>
 <div class="form">
 <form name="libgen" action="search.jsp">
 	<input name="query" id="searchform" size="60" maxlength="200" value="">
@@ -114,19 +115,19 @@ form
   <div class="column">
     <img src="images/thriller.png" alt="Thriller" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#22346B;cursor:pointer" onclick="location.href='thriller.jsp'">Thriller</div>
+    <div class="text" style="background-color:#22346B;cursor:pointer" onclick="location.href='group.jsp?cat=Thriller'">Thriller</div>
   	</div>
   </div>
   <div class="column">
     <img src="images/nonfiction.png" alt="NonFiction" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#5A73A7;cursor:pointer" onclick="location.href='nonfiction.jsp'">NonFiction</div>
+    <div class="text" style="background-color:#5A73A7;cursor:pointer" onclick="location.href='group.jsp?cat=Nonfiction'">NonFiction</div>
   	</div>
   </div>
   <div class="column">
     <img src="images/romance.png" alt="Romance" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#D92238;cursor:pointer" onclick="location.href='romance.jsp'">Romance</div>
+    <div class="text" style="background-color:#D92238;cursor:pointer" onclick="location.href='group.jsp?cat=Romance'">Romance</div>
   	</div>
   </div>
 </div>
@@ -134,19 +135,19 @@ form
   <div class="column">
     <img src="images/mystery.png" alt="Mystery" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#74BB88;cursor:pointer" onclick="location.href='mystery.jsp'">Mystery</div>
+    <div class="text" style="background-color:#74BB88;cursor:pointer" onclick="location.href='group.jsp?cat=Mystery'">Mystery</div>
   	</div>
   </div>
   <div class="column">
     <img src="images/fantasy.png" alt="Fantasy" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#791F52;cursor:pointer" onclick="location.href='fantasy.jsp'">Fantasy</div>
+    <div class="text" style="background-color:#791F52;cursor:pointer" onclick="location.href='group.jsp?cat=Fantasy'">Fantasy</div>
   	</div>
   </div>
   <div class="column">
     <img src="images/horror.png" alt="Horror" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#718B40;cursor:pointer" onclick="location.href='horror.jsp'">Horror</div>
+    <div class="text" style="background-color:#718B40;cursor:pointer" onclick="location.href='group.jsp?cat=Horror'">Horror</div>
   	</div>
   </div>
 </div>
@@ -154,19 +155,19 @@ form
   <div class="column">
     <img src="images/science_fiction.png" alt="Science Fiction" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#151515;cursor:pointer" onclick="location.href='sciencefiction.jsp'">Science Fiction</div>
+    <div class="text" style="background-color:#151515;cursor:pointer" onclick="location.href='group.jsp?cat=Science+Fiction'">Science Fiction</div>
   	</div>
   </div>
   <div class="column">
     <img src="images/travel.png" alt="Travel" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#5972A5;cursor:pointer" onclick="location.href='travel.jsp'">Travel</div>
+    <div class="text" style="background-color:#5972A5;cursor:pointer" onclick="location.href='group.jsp?cat=Travel'">Travel</div>
   	</div>
   </div>
   <div class="column">
     <img src="images/young_adult.png" alt="Young Adult" class = "image" style="width:50%">
     <div class="middle">
-    <div class="text" style="background-color:#FEFE2D;cursor:pointer" onclick="location.href='youngadult.jsp'">Young Adult</div>
+    <div class="text" style="background-color:#FEFE2D;cursor:pointer" onclick="location.href='group.jsp?cat=Young+Adult'">Young Adult</div>
   	</div>
   </div>
 </div>
